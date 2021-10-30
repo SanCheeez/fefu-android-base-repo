@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Activity Tracker</string>
+    <string name="registration_warning">
+        Нажимая на кнопку, вы соглашаетесь с политикой конфиденциальности и обработки персональных данных, а также принимаете пользовательское соглашение
+    </string>
 </resources>

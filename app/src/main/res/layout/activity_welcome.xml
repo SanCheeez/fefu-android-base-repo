@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/welcomeBackground"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_welcome_back" />
+
+            <ImageView
+                android:id="@+id/imageView_logo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="11dp"
+                app:srcCompat="@drawable/ic_logo" />
+
+            <ImageView
+                android:id="@+id/imageView_logoName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                app:srcCompat="@drawable/activity_logo" />
+
+            <TextView
+                android:id="@+id/textView_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                android:fontFamily="sans-serif-black"
+                android:text="Пожалуй лучший\nфитнес трекер в ДВФУ"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textFontWeight="700"
+                android:textSize="32sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/textView_subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:fontFamily="sans-serif-black"
+                android:text="Созданный студентами\n2-ого курса"
+                android:textAlignment="center"
+                android:textFontWeight="400"
+                android:textSize="16sp"
+                android:textStyle="normal" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_registration"
+                style="@style/RoundShapeButton"
+                android:layout_width="334dp"
+                android:layout_height="56dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="80dp"
+                android:fontFamily="sans-serif-black"
+                android:onClick="toRegistrationScreen"
+                android:text="Зарегистрироваться"
+                android:textAlignment="center"
+                android:textFontWeight="800"
+                android:textSize="16sp"
+                android:textStyle="normal">
+
+            </com.google.android.material.button.MaterialButton>
+
+            <TextView
+                android:id="@+id/textView_link"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:layout_marginBottom="74dp"
+                android:fontFamily="sans-serif-black"
+                android:text="Уже есть аккаунт?"
+                android:textAlignment="center"
+                android:textColor="#4800FF"
+                android:textFontWeight="700"
+                android:textSize="16sp"
+                android:textStyle="normal" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
