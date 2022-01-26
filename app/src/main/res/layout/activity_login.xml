@@ -16,11 +16,11 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:onClick="toRegistrationScreen"
             android:id="@+id/arrowBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="38dp"
+            android:onClick="toRegistrationScreen"
             app:srcCompat="@drawable/ic_arrow_back" />
         <!--            android:onClick="toRegistrationScreen"-->
 
@@ -31,8 +31,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:fontFamily="sans-serif-black"
-            android:lineHeight="41sp"
-            android:text="Вход"
+            android:lineHeight="40sp"
+            android:text="@string/login_title"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textFontWeight="700"
@@ -49,7 +49,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Логин" />
+                android:hint="@string/field_login" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -63,18 +63,20 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Пароль" />
+                android:hint="@string/field_password" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_registration"
             style="@style/RoundShapeButton"
-            android:layout_width="334dp"
-            android:layout_height="56dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:layout_gravity="center"
             android:fontFamily="sans-serif-black"
-            android:onClick="toRegistration"
-            android:text="Продолжить"
+            android:onClick="toMyActivityScreen"
+            android:text="@string/btn_continue"
             android:textAlignment="center"
             android:textFontWeight="800"
             android:textSize="16sp"
