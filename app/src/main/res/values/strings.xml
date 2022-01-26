@@ -1,3 +1,51 @@
 <resources>
     <string name="app_name">Activity Tracker</string>
+    <string name="registration_warning">
+        Нажимая на кнопку, вы соглашаетесь с политикой конфиденциальности и обработки персональных данных, а также принимаете пользовательское соглашение
+    </string>
+
+    <string name="title_activity_hello_screen">HelloScreenActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="registration_button">Зарегистрироваться</string>
+    <string name="registration_text_1">Пожалуй лучший \n фитнес трекер в ДВФУ</string>
+    <string name="registration_text_2">Созданный студентами \n 2-ого курса</string>
+    <string name="continue_button">Продолжить</string>
+    <string name="log_in">Уже есть аккаунт?</string>
+    <string name="registration">Регистрация</string>
+    <string name="enter">Вход</string>
+    <string name="hint_login_reg">Логин</string>
+    <string name="hint_password_reg">Пароль</string>
+    <string name="hint_password_repeat_reg">Повторите пароль</string>
+    <string name="hint_nickname_reg">Имя или никнейм</string>
+    <string name="hint_sex_reg">Пол</string>
+    <string name="agree_with_politic_reg">Нажимая на кнопку, вы соглашаетесь с политикой \nконфиденциальности и обработки персональных \n данных, а также принимаете пользовательское \n            соглашение</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="my_fragment">TAB1</string>
+    <string name="users_fragment">TAB2</string>
+    <string name="my_activities">Моя</string>
+    <string name="users_activities">Пользователей</string>
+    <string name="title_activity_bottom_nav">BottomNavActivity</string>
+    <string name="profile">PROFILE</string>
+    <string name="nav_bottom_profile">Профиль</string>
+    <string name="nav_bottom_activities">Активность</string>
+    <string name="login_title">Вход</string>
+    <string name="field_login">Логин</string>
+    <string name="field_password">Пароль</string>
+    <string name="btn_continue">Продолжить</string>
+    <string name="field_sex">Пол</string>
+    <string name="field_nickname">Имя или никнейм</string>
+    <string name="field_password_repeat">Повторите пароль</string>
+    <string name="registration_title">Регистрация</string>
+    <string name="welcome_title">Пожалуй лучший\nфитнес трекер в ДВФУ</string>
+    <string name="welcome_subtitle">Созданный студентами\n2-ого курса</string>
+    <string name="is_had_account">Уже есть аккаунт?</string>
+    <string name="btn_register">Зарегистрироваться</string>
+
 </resources>
