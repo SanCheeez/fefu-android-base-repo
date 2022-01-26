@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/toolbar_menu_trash"
+        android:icon="@drawable/ic_trash_bucket"
+        android:orderInCategory="1"
+        android:title=""
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/toolbar_menu_share"
+        android:icon="@drawable/ic_share_detalisation"
+        android:orderInCategory="2"
+        android:title=""
+        app:showAsAction="ifRoom" />
+
+</menu>

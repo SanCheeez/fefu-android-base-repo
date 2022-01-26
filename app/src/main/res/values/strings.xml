@@ -47,5 +47,6 @@
     <string name="welcome_subtitle">Созданный студентами\n2-ого курса</string>
     <string name="is_had_account">Уже есть аккаунт?</string>
     <string name="btn_register">Зарегистрироваться</string>
+    <string name="comment">Комментарий</string>
 
 </resources>

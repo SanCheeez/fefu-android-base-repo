@@ -5,14 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import ru.fefu.activitytracker.ActivityAdapter
+import ru.fefu.activitytracker.adapters.ActivityAdapter
 import ru.fefu.activitytracker.R
 
-class ActivityFragment : Fragment() {
+class ActivityFragment : Fragment(), FlowFragmentInterface {
     private lateinit var activity_TabLayout: TabLayout
     private lateinit var activity_ViewPager2: ViewPager2
     private lateinit var activity_Adapter: ActivityAdapter
@@ -53,4 +55,11 @@ class ActivityFragment : Fragment() {
             )
         if (!activity_tab.isChecked) activity_tab.isChecked = true
     }
+
+    public fun setupNavigation() {
+        findNavController().navigate(R.id.action_activityFragment_to_profileFragment)
+    }
+
+    override fun getFlowFragmentManager(): FragmentManager =
+        (parentFragment as FlowFragmentInterface).getFlowFragmentManager()
 }

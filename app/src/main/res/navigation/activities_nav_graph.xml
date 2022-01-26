@@ -8,11 +8,55 @@
     <fragment
         android:id="@+id/activityFragment"
         android:name="ru.fefu.activitytracker.fragments.ActivityFragment"
-        android:label="activity_fragment"
-        tools:layout="@layout/fragment_activity" />
+        android:label="fragment_activity"
+        tools:layout="@layout/fragment_activity">
+        <action
+            android:id="@+id/action_activityFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/activityMyFragment"
+        android:name="ru.fefu.activitytracker.fragments.MyFragment"
+        android:label="fragment_activity_my"
+        tools:layout="@layout/fragment_tab_my">
+        <action
+            android:id="@+id/action_activityMyFragment_to_activityUsersFragment"
+            app:destination="@id/activityUsersFragment" />
+        <action
+            android:id="@+id/action_activityMyFragment_to_detalisationFragment"
+            app:destination="@id/detalisationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/activityUsersFragment"
+        android:name="ru.fefu.activitytracker.fragments.UsersFragment"
+        android:label="fragment_activity_users"
+        tools:layout="@layout/fragment_tab_my">
+        <action
+            android:id="@+id/action_activityUsersFragment_to_activityMyFragment"
+            app:destination="@id/activityMyFragment" />
+        <action
+            android:id="@+id/action_activityUsersFragment_to_detalisationFragment"
+            app:destination="@id/detalisationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detalisationFragment"
+        android:name="ru.fefu.activitytracker.fragments.DetalisationFragment"
+        android:label="fragment_detalisation"
+        tools:layout="@layout/fragment_detalisation">
+        <action
+            android:id="@+id/action_detalisationFragment_to_activityMyFragment"
+            app:destination="@id/activityMyFragment" />
+        <action
+            android:id="@+id/action_detalisationFragment_to_activityUsersFragment"
+            app:destination="@id/activityUsersFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="ru.fefu.activitytracker.fragments.ProfileFragment"
-        android:label="profile_fragment"
-        tools:layout="@layout/fragment_profile" />
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_activityFragment"
+            app:destination="@id/activityFragment" />
+    </fragment>
 </navigation>
