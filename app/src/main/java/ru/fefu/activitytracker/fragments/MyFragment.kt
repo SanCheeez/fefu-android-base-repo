@@ -7,10 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import ru.fefu.activitytracker.BottomNavActivity
-import ru.fefu.activitytracker.MyActivityStore
+import ru.fefu.activitytracker.stores.MyActivityStore
 import ru.fefu.activitytracker.R
 import ru.fefu.activitytracker.adapters.RecyclerAdapter
+import ru.fefu.activitytracker.interfaces.FlowFragmentInterface
 
 class MyFragment : Fragment() {
     private val activityStore = MyActivityStore()

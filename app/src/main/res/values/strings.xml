@@ -32,7 +32,7 @@
     <string name="my_activities">Моя</string>
     <string name="users_activities">Пользователей</string>
     <string name="title_activity_bottom_nav">BottomNavActivity</string>
-    <string name="profile">PROFILE</string>
+    <string name="profile">Профиль</string>
     <string name="nav_bottom_profile">Профиль</string>
     <string name="nav_bottom_activities">Активность</string>
     <string name="login_title">Вход</string>
@@ -48,5 +48,13 @@
     <string name="is_had_account">Уже есть аккаунт?</string>
     <string name="btn_register">Зарегистрироваться</string>
     <string name="comment">Комментарий</string>
+    <string name="change_password">Изменить пароль</string>
+    <string name="old_password">Старый пароль</string>
+    <string name="new_password">Новый пароль</string>
+    <string name="accept_password">Принять</string>
+    <string name="start">Начать</string>
+    <string name="lets_go">Погнали? :)</string>
+    <string name="exit">Выйти</string>
+    <string name="save">Сохранить</string>
 
 </resources>

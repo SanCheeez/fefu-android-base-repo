@@ -1,4 +1,6 @@
-package ru.fefu.activitytracker
+package ru.fefu.activitytracker.stores
+
+import ru.fefu.activitytracker.Items.ActivityItem
 
 class MyActivityStore {
     private val myStore = listOf<ActivityItem>(

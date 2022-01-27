@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import ru.fefu.activitytracker.R
+import ru.fefu.activitytracker.interfaces.FlowFragmentInterface
 
-class ProfileFragment : Fragment() {
+class ProfileFlowFragment : Fragment(), FlowFragmentInterface {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -20,7 +22,15 @@ class ProfileFragment : Fragment() {
                 R.id.navigation_profile
             )
         profile.isChecked = true
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        return inflater.inflate(R.layout.fragment_flow_profile, container, false)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (savedInstanceState == null) childFragmentManager.beginTransaction().apply {
+            replace(R.id.container, ProfileEnterFragment())
+            commit()
+        }
     }
 
     override fun onHiddenChanged(hidden: Boolean) {
@@ -32,7 +42,5 @@ class ProfileFragment : Fragment() {
         if (!profile_tab.isChecked) profile_tab.isChecked = true
     }
 
-    public fun setupNavigation() {
-        findNavController().navigate(R.id.action_profileFragment_to_activityFragment)
-    }
+    override fun getFlowFragmentManager(): FragmentManager = childFragmentManager
 }

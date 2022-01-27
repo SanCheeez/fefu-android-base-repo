@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toolbar
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import ru.fefu.activitytracker.*
+import ru.fefu.activitytracker.Items.ActivityItem
+import ru.fefu.activitytracker.interfaces.FlowFragmentInterface
+import ru.fefu.activitytracker.stores.MyActivityStore
+import ru.fefu.activitytracker.stores.UsersActivityStore
 
 class DetalisationFragment() : Fragment() {
     private var is_my: Boolean = false
@@ -37,7 +39,7 @@ class DetalisationFragment() : Fragment() {
     override fun onStart() {
         super.onStart()
         val view = requireView()
-        val toolbar = view.findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
+        val toolbar = view.findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar_detalisation)
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back)
         toolbar.title = activityStore[position].type
         if (is_my) toolbar.inflateMenu(R.menu.toolbar_detalisation_menu)

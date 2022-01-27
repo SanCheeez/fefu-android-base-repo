@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import ru.fefu.activitytracker.ActivityItem
+import ru.fefu.activitytracker.Items.ActivityItem
 import ru.fefu.activitytracker.R
 
 class RecyclerAdapter(activities: List<ActivityItem>, is_my_: Boolean) :
