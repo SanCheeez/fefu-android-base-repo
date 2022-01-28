@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import ru.fefu.activitytracker.DataBase.ActivityType
+import ru.fefu.activitytracker.Items.ActivityItem
 import ru.fefu.activitytracker.Items.ActivityMapItem
 import ru.fefu.activitytracker.R
 
@@ -26,10 +28,10 @@ class RecyclerMapAdapter(activities: List<ActivityMapItem>, context_: Context) :
             }
         }
 
-        fun bind(activity_item_for_map: ActivityMapItem) {
-            type.text = activity_item_for_map.type
+        fun bind(activity_item_map: ActivityMapItem) {
+            type.text = ActivityType.values()[activity_item_map.type].type
 
-            itemView.background = if (activity_item_for_map.isSelected) ContextCompat.getDrawable(
+            itemView.background = if (activity_item_map.isSelected) ContextCompat.getDrawable(
                 context,
                 R.drawable.border_type
             )
@@ -49,7 +51,6 @@ class RecyclerMapAdapter(activities: List<ActivityMapItem>, context_: Context) :
     }
 
     override fun getItemCount(): Int = mutable_activities.size
-
 
     fun setItemClickListener(listener: (Int) -> Unit) {
         itemClickListener = listener

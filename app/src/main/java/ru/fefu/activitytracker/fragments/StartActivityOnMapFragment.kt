@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import ru.fefu.activitytracker.DataBase.ActivityType
 import ru.fefu.activitytracker.R
 import ru.fefu.activitytracker.stores.MapActivityStore
 
@@ -33,8 +34,8 @@ class StartActivityOnMapFragment : Fragment() {
         super.onStart()
         val view = requireView()
         val type = view.findViewById<TextView>(R.id.map_activity_type)
-        val width = view.findViewById<TextView>(R.id.map_activity_record)
-        type.text = activityStore[position].type
-        width.text = activityStore[position].record
+        val record = view.findViewById<TextView>(R.id.map_activity_record)
+        type.text = ActivityType.values()[activityStore[position].type].type
+        record.text = activityStore[position].record
     }
 }
