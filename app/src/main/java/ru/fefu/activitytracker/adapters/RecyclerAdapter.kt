@@ -29,10 +29,17 @@ class RecyclerAdapter(activities: List<DBActivityItem>) :
         }
 
         fun bind(activity_item: Activity) {
-            distance.text = countDistance(SerialiseClass().listDecode(activity_item.coordinates!!))
-            time.text = countPeriod(activity_item.date_finish!! - activity_item.date_start!!)
+            distance.text =
+                if (activity_item.coordinates != null)
+                    countDistance(SerialiseClass().listDecode(activity_item.coordinates))
+                else
+                    "0 км"
+            if (activity_item.date_finish != null)
+                time.text = countPeriod(activity_item.date_finish - activity_item.date_start!!)
             type.text = ActivityType.values()[activity_item.type!!].type
-            date.text = DateFormat.format("dd.MM.yyyy", Date(activity_item.date_start)).toString()
+            date.text =
+                DateFormat.format("dd.MM.yyyy", activity_item.date_start?.let { Date(it) })
+                    .toString()
         }
     }
 
@@ -90,21 +97,18 @@ class RecyclerAdapter(activities: List<DBActivityItem>) :
             end_point.latitude = list[i + 1].first
             end_point.longitude = list[i + 1].second
 
-            distance = start_point.distanceTo(end_point).toDouble() / 1000
+            distance += start_point.distanceTo(end_point).toDouble() / 1000
         }
         return distance.roundToLong().toString() + " км"
     }
 
     private fun countPeriod(period: Long): String {
         var period_str: String = ""
-        val calendar: Calendar = Calendar.getInstance()
-        calendar.time = Date(period)
-        val hour = calendar.get(Calendar.HOUR)
-        val minute = calendar.get(Calendar.MINUTE)
-        if (hour > 0)
-            period_str = period_str + calendar.get(Calendar.HOUR) + " час(ов)"
-        if (minute > 0)
-            period_str = period_str + calendar.get(Calendar.MINUTE) + " минут(а)"
+        var minute = period / 60000
+        val hour = minute / 60
+        minute %= 60
+        if (hour > 0) period_str = period_str + hour.toString() + " час(ов)"
+        if (minute > 0) period_str = period_str + minute.toString() + " минут(а)"
         if (period_str == "") period_str = "Меньше минуты"
         return period_str
     }

@@ -17,6 +17,7 @@ import ru.fefu.activitytracker.interfaces.FlowFragmentInterface
 import ru.fefu.activitytracker.stores.MyActivityStore
 import ru.fefu.activitytracker.stores.UsersActivityStore
 import android.text.format.DateFormat
+import ru.fefu.activitytracker.DataBase.App
 import java.util.*
 import kotlin.math.min
 import kotlin.math.roundToLong
@@ -28,12 +29,12 @@ class DetalisationFragment() : Fragment() {
     lateinit var activity_item: ActivityItemEntity
 
     companion object {
-        fun newInstance(position: Int, is_my: Boolean, activity_item: String?) =
+        fun newInstance(position: Int, is_my: Boolean, id: Int?) =
             DetalisationFragment().apply {
                 arguments = bundleOf(
                     "is_my" to is_my,
                     "position" to position,
-                    "activity_item" to activity_item
+                    "id" to id
                 )
             }
     }
@@ -45,8 +46,8 @@ class DetalisationFragment() : Fragment() {
     ): View? {
         is_my = arguments?.get("is_my") as Boolean
         position = arguments?.get("position") as Int
-        if (is_my) activity_item =
-            SerialiseClass().itemDecode(arguments?.get("activity_item") as String)
+        val id = arguments?.get("id") as Int?
+        if (is_my) activity_item = App.INSTANCE.db.activityDao().getById(id!!)
         activityStore = if (is_my) MyActivityStore().getStore()
             .toMutableList() else UsersActivityStore().getStore().toMutableList()
         return inflater.inflate(R.layout.fragment_detalisation, container, false)
@@ -104,19 +105,18 @@ class DetalisationFragment() : Fragment() {
             end_point.latitude = list[i + 1].first
             end_point.longitude = list[i + 1].second
 
-            distance = start_point.distanceTo(end_point).toDouble() / 1000
+            distance += start_point.distanceTo(end_point).toDouble() / 1000
         }
         return distance.roundToLong().toString() + " км"
     }
 
     private fun countPeriod(period: Long): String {
-        val calendar: Calendar = Calendar.getInstance()
-        calendar.time = Date(period)
         var period_str: String = ""
-        val hour = calendar.get(Calendar.HOUR)
-        val minute = calendar.get(Calendar.MINUTE)
-        if (hour > 0) period_str = period_str + calendar.get(Calendar.HOUR) + " час(ов)"
-        if (minute > 0) period_str = period_str + calendar.get(Calendar.MINUTE) + " минут(а)"
+        var minute = period / 60000
+        val hour = minute / 60
+        minute %= 60
+        if (hour > 0) period_str += hour.toString() + " час(ов)"
+        if (minute > 0) period_str += minute.toString() + " минут(а)"
         if (period_str == "") period_str = "Меньше минуты"
         return period_str
     }
