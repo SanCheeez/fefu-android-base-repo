@@ -75,7 +75,11 @@ class DetalisationFragment() : Fragment() {
             period.text = activityStore[position].period
         } else {
             toolbar.title = ActivityType.values()[activity_item.type!!].type
-            distance.text = countDistance(SerialiseClass().listDecode(activity_item.coordinates!!))
+            distance.text = activity_item.coordinates?.let {
+                SerialiseClass().listDecode(
+                    it
+                )
+            }?.let { countDistance(it) }
             time.text = countPeriod(activity_item.date_finish!! - activity_item.date_start!!)
             user.text = null
             date.text = DateFormat.format("dd.MM.yyyy", Date(activity_item.date_start!!)).toString()
