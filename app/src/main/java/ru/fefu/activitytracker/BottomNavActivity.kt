@@ -11,11 +11,13 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import ru.fefu.activitytracker.fragments.ActivityFlowFragment
 import ru.fefu.activitytracker.fragments.ActivityFragment
+import ru.fefu.activitytracker.fragments.DetalisationFragment
 import ru.fefu.activitytracker.fragments.ProfileFragment
 
 class BottomNavActivity : AppCompatActivity() {
-private lateinit var bottom_nav: BottomNavigationView
+    private lateinit var bottom_nav: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +27,7 @@ private lateinit var bottom_nav: BottomNavigationView
             bottom_nav.selectedItemId = savedInstanceState.getInt("tabs", 1)
         } else {
             supportFragmentManager.beginTransaction().apply {
-                add(R.id.nav_host_fragment, ActivityFragment(), "activity")
+                replace(R.id.nav_host_fragment, ActivityFlowFragment(), "activity")
                 commit()
             }
         }
@@ -37,7 +39,6 @@ private lateinit var bottom_nav: BottomNavigationView
                     if (fragment != null) this.show(fragment)
                     fragment = supportFragmentManager.findFragmentByTag("profile")
                     if (fragment != null) this.hide(fragment)
-                    addToBackStack("activity")
                     commit()
                 }
             } else if (it.itemId == R.id.navigation_profile && bottom_nav.selectedItemId == R.id.navigation_activity) {
@@ -52,7 +53,6 @@ private lateinit var bottom_nav: BottomNavigationView
                         "profile"
                     )
                     else this.show(fragment!!)
-                    addToBackStack("profile")
                     commit()
                 }
             }
