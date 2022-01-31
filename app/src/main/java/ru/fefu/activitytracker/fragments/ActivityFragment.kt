@@ -1,5 +1,6 @@
 package ru.fefu.activitytracker.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,10 +10,13 @@ import androidx.fragment.app.FragmentManager
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import ru.fefu.activitytracker.adapters.ActivityAdapter
 import ru.fefu.activitytracker.R
+import ru.fefu.activitytracker.activities.MapActivity
+import ru.fefu.activitytracker.interfaces.FlowFragmentInterface
 
 class ActivityFragment : Fragment(), FlowFragmentInterface {
     private lateinit var activity_TabLayout: TabLayout
@@ -56,8 +60,14 @@ class ActivityFragment : Fragment(), FlowFragmentInterface {
         if (!activity_tab.isChecked) activity_tab.isChecked = true
     }
 
-    public fun setupNavigation() {
-        findNavController().navigate(R.id.action_activityFragment_to_profileFragment)
+    override fun onStart() {
+        super.onStart()
+        val view = requireView()
+        val button_activity_start =
+            view.findViewById<FloatingActionButton>(R.id.button_start_activity)
+        button_activity_start.setOnClickListener {
+            startActivity(Intent(requireContext(), MapActivity::class.java))
+        }
     }
 
     override fun getFlowFragmentManager(): FragmentManager =

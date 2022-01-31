@@ -1,4 +1,4 @@
-package ru.fefu.activitytracker
+package ru.fefu.activitytracker.Items
 
 data class ActivityItem(
     val distance: String?,

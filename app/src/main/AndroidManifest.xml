@@ -10,22 +10,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Activity">
         <activity
-            android:name=".fragments.ActivityFlowFragment"
+            android:name=".fragments.StartActivityOnMapFragment"
             android:exported="true" />
         <activity
-            android:name=".fragments.DetalisationFragment"
+            android:name=".fragments.ChooseActivityOnMapFragment"
             android:exported="true" />
         <activity
-            android:name=".WelcomeActivity"
+            android:name=".activities.MapActivity"
             android:exported="true" />
         <activity
-            android:name=".RegistrationActivity"
+            android:name=".activities.WelcomeActivity"
             android:exported="true" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".activities.RegistrationActivity"
             android:exported="true" />
         <activity
-            android:name=".BottomNavActivity"
+            android:name=".activities.LoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activities.BottomNavActivity"
             android:exported="true"
             android:label="@string/title_activity_bottom_nav">
             <intent-filter>

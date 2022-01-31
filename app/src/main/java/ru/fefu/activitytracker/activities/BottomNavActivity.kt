@@ -1,20 +1,12 @@
-package ru.fefu.activitytracker
+package ru.fefu.activitytracker.activities
 
 import android.os.Bundle
 import android.os.PersistableBundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.Navigation.findNavController
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
+import ru.fefu.activitytracker.R
 import ru.fefu.activitytracker.fragments.ActivityFlowFragment
-import ru.fefu.activitytracker.fragments.ActivityFragment
-import ru.fefu.activitytracker.fragments.DetalisationFragment
-import ru.fefu.activitytracker.fragments.ProfileFragment
+import ru.fefu.activitytracker.fragments.ProfileFlowFragment
 
 class BottomNavActivity : AppCompatActivity() {
     private lateinit var bottom_nav: BottomNavigationView
@@ -49,7 +41,7 @@ class BottomNavActivity : AppCompatActivity() {
                     fragment = supportFragmentManager.findFragmentByTag("profile")
                     if (fragment == null) add(
                         R.id.nav_host_fragment,
-                        ProfileFragment(),
+                        ProfileFlowFragment(),
                         "profile"
                     )
                     else this.show(fragment!!)
