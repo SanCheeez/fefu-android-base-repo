@@ -137,42 +137,52 @@ class RecordLocationService : Service() {
         override fun onLocationResult(p0: LocationResult) {
             val lastLocation = p0.lastLocation
             val activity = App.INSTANCE.db.activityDao().getLast()
-            var list = activity.coordinates?.let { SerialiseClass().listDecode(it) }
+            var list = activity?.coordinates?.let { SerialiseClass().listDecode(it) }
             var activityUpdate: ActivityItemEntity? = null
             if (list != null) {
                 list = list.toMutableList()
                 list.add(Pair(lastLocation.latitude, lastLocation.longitude))
-                activityUpdate = ActivityItemEntity(
-                    id = activity.id,
-                    type = activity.type,
-                    date_start = activity.date_start,
-                    date_finish = null,
-                    coordinates = SerialiseClass().listEncode(list)
-                )
+                if (activity != null) {
+                    activityUpdate = ActivityItemEntity(
+                        id = activity.id,
+                        type = activity.type,
+                        date_start = activity.date_start,
+                        date_finish = null,
+                        coordinates = SerialiseClass().listEncode(list)
+                    )
+                }
             } else {
                 var list_ = mutableListOf<Pair<Double, Double>>()
                 list_.add(Pair(lastLocation.latitude, lastLocation.longitude))
-                activityUpdate = ActivityItemEntity(
-                    id = activity.id,
-                    type = activity.type,
-                    date_start = activity.date_start,
-                    date_finish = null,
-                    coordinates = SerialiseClass().listEncode(list_)
-                )
+                if (activity != null) {
+                    activityUpdate = ActivityItemEntity(
+                        id = activity.id,
+                        type = activity.type,
+                        date_start = activity.date_start,
+                        date_finish = null,
+                        coordinates = SerialiseClass().listEncode(list_)
+                    )
+                }
             }
-            App.INSTANCE.db.activityDao().updateLast(activityUpdate)
+            if (activityUpdate != null) {
+                App.INSTANCE.db.activityDao().updateLast(activityUpdate)
+            }
         }
     }
 
     private fun FinishActivity() {
         val activity = App.INSTANCE.db.activityDao().getLast()
-        var activityUpdate = ActivityItemEntity(
-            id = activity.id,
-            type = activity.type,
-            date_start = activity.date_start,
-            date_finish = System.currentTimeMillis(),
-            coordinates = activity.coordinates
-        )
-        App.INSTANCE.db.activityDao().updateLast(activityUpdate)
+        var activityUpdate = activity?.let {
+            ActivityItemEntity(
+                id = it.id,
+                type = activity.type,
+                date_start = activity.date_start,
+                date_finish = System.currentTimeMillis(),
+                coordinates = activity.coordinates
+            )
+        }
+        if (activityUpdate != null) {
+            App.INSTANCE.db.activityDao().updateLast(activityUpdate)
+        }
     }
 }

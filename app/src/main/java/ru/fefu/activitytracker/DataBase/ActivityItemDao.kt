@@ -12,7 +12,7 @@ interface ActivityItemDao {
     fun getAll(): LiveData<List<ActivityItemEntity>>
 
     @Query("SELECT * FROM activities WHERE id = (SELECT MAX(id) FROM activities)")
-    fun getLast(): ActivityItemEntity
+    fun getLast(): ActivityItemEntity?
 
     @Query("SELECT * FROM activities WHERE id = (SELECT MAX(id) FROM activities)")
     fun getLastInTime(): LiveData<ActivityItemEntity>

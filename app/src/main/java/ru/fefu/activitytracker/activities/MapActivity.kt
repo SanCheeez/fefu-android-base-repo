@@ -105,10 +105,12 @@ class MapActivity : AppCompatActivity() {
             )
         }
         val activity = App.INSTANCE.db.activityDao().getLast()
-        if (activity.date_finish == null && activity.coordinates != null) {
-            val coordinates = SerialiseClass().listDecode(activity.coordinates)
-            for (coordinate in coordinates) {
-                polyline.addPoint(GeoPoint(coordinate.first, coordinate.second))
+        if (activity != null) {
+            if (activity.date_finish == null && activity.coordinates != null) {
+                val coordinates = SerialiseClass().listDecode(activity.coordinates)
+                for (coordinate in coordinates) {
+                    polyline.addPoint(GeoPoint(coordinate.first, coordinate.second))
+                }
             }
         }
         mapView.overlayManager.add(polyline)
