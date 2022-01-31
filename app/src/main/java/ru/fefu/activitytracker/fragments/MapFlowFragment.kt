@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import ru.fefu.activitytracker.DataBase.App
 import ru.fefu.activitytracker.R
 import ru.fefu.activitytracker.interfaces.FlowFragmentInterface
 
@@ -20,8 +21,17 @@ class MapFlowFragment : Fragment(), FlowFragmentInterface {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val activity = App.INSTANCE.db.activityDao().getLast()
         if (savedInstanceState == null) childFragmentManager.beginTransaction().apply {
-            replace(R.id.fragment_container_map, ChooseActivityOnMapFragment())
+            if (activity == null)
+                replace(R.id.fragment_container_map, ChooseActivityOnMapFragment())
+            else if (activity != null && activity.date_finish != null)
+                replace(R.id.fragment_container_map, ChooseActivityOnMapFragment())
+            else if (activity != null && activity.date_finish == null)
+                replace(
+                    R.id.fragment_container_map,
+                    StartActivityOnMapFragment.newInstance(activity.type!!)
+                )
             commit()
         }
     }

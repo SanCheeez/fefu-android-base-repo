@@ -1,27 +1,21 @@
 package ru.fefu.activitytracker.fragments
 
 import android.annotation.SuppressLint
-import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.button.MaterialButton
 import ru.fefu.activitytracker.DataBase.ActivityItemEntity
 import ru.fefu.activitytracker.DataBase.App
-import ru.fefu.activitytracker.DataBase.SerialiseClass
 import ru.fefu.activitytracker.R
+import ru.fefu.activitytracker.activities.MapActivity
 import ru.fefu.activitytracker.adapters.RecyclerMapAdapter
 import ru.fefu.activitytracker.interfaces.FlowFragmentInterface
 import ru.fefu.activitytracker.stores.MapActivityStore
-import java.lang.Math.random
-import java.util.*
 
 class ChooseActivityOnMapFragment : Fragment() {
     private val activityStore = MapActivityStore()
@@ -37,6 +31,7 @@ class ChooseActivityOnMapFragment : Fragment() {
 
     @SuppressLint("SimpleDateFormat")
     override fun onStart() {
+        var map = requireActivity() as MapActivity
         super.onStart()
         val recyclerAdapter = RecyclerMapAdapter(activityStore.getStore(), requireActivity())
         val view = requireView()
@@ -48,29 +43,27 @@ class ChooseActivityOnMapFragment : Fragment() {
         recyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         startButton.setOnClickListener {
-            val fragment_manager =
-                (parentFragment as FlowFragmentInterface).getFlowFragmentManager()
-            fragment_manager.beginTransaction().apply {
-                replace(
-                    R.id.fragment_container_map,
-                    StartActivityOnMapFragment.newInstance(chosen_item)
+            if (map.isPermission() && map.startLocationService()) {
+                val fragment_manager =
+                    (parentFragment as FlowFragmentInterface).getFlowFragmentManager()
+                fragment_manager.beginTransaction().apply {
+                    replace(
+                        R.id.fragment_container_map,
+                        StartActivityOnMapFragment.newInstance(chosen_item)
+                    )
+                    addToBackStack(null)
+                    commit()
+                }
+                App.INSTANCE.db.activityDao().insertActivity(
+                    ActivityItemEntity(
+                        id = 0,
+                        type = activityStore.getStore().toMutableList()[chosen_item].type,
+                        date_start = System.currentTimeMillis(),
+                        date_finish = null,
+                        coordinates = null
+                    )
                 )
-                addToBackStack(null)
-                commit()
             }
-            val list = mutableListOf<Pair<Double, Double>>()
-            for (i in 1..5) {
-                list.add(Pair(random() * 10, random() * 10))
-            }
-            App.INSTANCE.db.activityDao().insertActivity(
-                ActivityItemEntity(
-                    id = 0,
-                    type = activityStore.getStore().toMutableList()[chosen_item].type,
-                    date_start = System.currentTimeMillis(),
-                    date_finish = System.currentTimeMillis() + 1000000,
-                    coordinates = SerialiseClass().listEncode(list)
-                )
-            )
         }
         recyclerAdapter.setItemClickListener {
             recyclerAdapter.ChangeSelection(it, chosen_item)
