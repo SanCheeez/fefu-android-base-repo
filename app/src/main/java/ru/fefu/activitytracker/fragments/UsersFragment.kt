@@ -10,11 +10,12 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.fefu.activitytracker.R
 import ru.fefu.activitytracker.stores.UsersActivityStore
 import ru.fefu.activitytracker.adapters.RecyclerAdapter
+import ru.fefu.activitytracker.adapters.UsersAdapter
 import ru.fefu.activitytracker.interfaces.FlowFragmentInterface
 
 class UsersFragment : Fragment() {
     private val activityStore = UsersActivityStore()
-    private val recyclerAdapter = RecyclerAdapter(activityStore.getStore(), false)
+    private val recyclerAdapter = UsersAdapter(activityStore.getStore(), false)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,7 +25,7 @@ class UsersFragment : Fragment() {
         recyclerAdapter.setItemClickListener {
             var fragmentManager = (parentFragment as FlowFragmentInterface).getFlowFragmentManager()
             fragmentManager.beginTransaction().apply {
-                replace(R.id.container, DetalisationFragment.newInstance(it, false))
+                replace(R.id.container, DetalisationFragment.newInstance(it, false, null))
                 addToBackStack(null)
                 commit()
             }

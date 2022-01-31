@@ -1,20 +1,21 @@
 package ru.fefu.activitytracker.stores
 
+import ru.fefu.activitytracker.DataBase.ActivityType
 import ru.fefu.activitytracker.Items.ActivityItem
 import ru.fefu.activitytracker.Items.ActivityMapItem
 
 class MapActivityStore {
     private val mapStore = listOf<ActivityMapItem>(
         ActivityMapItem(
-            "Сёрфинг",
+            ActivityType.WALKING.ordinal,
             "14.32 км",
         ),
         ActivityMapItem(
-            "Велосипед",
+            ActivityType.BICYCLE.ordinal,
             "1 км",
         ),
         ActivityMapItem(
-            "Бег",
+            ActivityType.RUNNING.ordinal,
             "10 км",
         ),
     )
